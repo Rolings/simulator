@@ -5,21 +5,58 @@
         @include('section.navbar',['active'=>'club.clubs'])
         <div class="row">
             <div class="col-sm-6">
-                <form>
+                <form action="{{ route('club.store') }}" method="POST">
+                    @csrf
                     <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label">Email address</label>
-                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                        <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                        <label for="name" class="form-label">Name</label>
+                        <input type="text" class="form-control" id="name" name="name">
+                        @error('name')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                     </div>
+
                     <div class="mb-3">
-                        <label for="exampleInputPassword1" class="form-label">Password</label>
-                        <input type="password" class="form-control" id="exampleInputPassword1">
+                        <label for="played" class="form-label">Played</label>
+                        <input type="text" class="form-control" id="played" name="played">
+                        @error('played')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                     </div>
-                    <div class="mb-3 form-check">
-                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                        <label class="form-check-label" for="exampleCheck1">Check me out</label>
+
+                    <div class="mb-3">
+                        <label for="won" class="form-label">Won</label>
+                        <input type="text" class="form-control" id="won" name="won">
+                        @error('won')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                     </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+
+                    <div class="mb-3">
+                        <label for="drawn" class="form-label">Drawn</label>
+                        <input type="text" class="form-control" id="drawn" name="drawn">
+                        @error('drawn')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="lost" class="form-label">lost</label>
+                        <input type="text" class="form-control" id="lost" name="lost">
+                        @error('lost')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="goal_difference" class="form-label">Goal difference</label>
+                        <input type="text" class="form-control" id="goal_difference" name="goal_difference">
+                        @error('goal_difference')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+                    <button type="submit" class="btn btn-success">Save</button>
+                    <a class="btn btn-outline-info" href="{{ route('club.index') }}">Back</a>
                 </form>
             </div>
 

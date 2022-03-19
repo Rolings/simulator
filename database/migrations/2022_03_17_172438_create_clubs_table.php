@@ -16,12 +16,12 @@ return new class extends Migration
         Schema::create('clubs', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-
-            $table->string('played');
-            $table->string('won');
-            $table->string('drawn');
-            $table->string('lost');
-            $table->string('points');
+            $table->smallInteger('played');
+            $table->smallInteger('won');
+            $table->smallInteger('drawn');
+            $table->smallInteger('lost');
+            $table->decimal('goal_difference',3,0);
+            $table->string('points')->nullable();
             $table->timestamps();
         });
     }

@@ -2,14 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\Club;
+use Illuminate\Contracts\View\View;
 
 class SimulatorController extends Controller
 {
-    public function index()
+    /**
+     * @param Club $clubs
+     * @return View
+     */
+    public function index(Club $clubs): View
     {
-        $clubs = collect([]);
-        return view('simulator', compact('clubs'));
+        return view('simulator', ['clubs' => $clubs->get()]);
     }
-    //
 }
