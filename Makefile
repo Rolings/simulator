@@ -14,17 +14,15 @@ docker-up:
 docker-down:
 	docker-compose down --remove-orphans
 composer-install:
-	docker-compose exec affiliate_app composer install
+	docker-compose exec simulator_app composer install
 npm-install:
-	docker-compose exec affiliate_app npm ci
-	docker-compose exec affiliate_app /bin/sh -c "npm run development"
+	docker-compose exec simulator_app npm ci
+	docker-compose exec simulator_app npm install sass sass-loader
+	docker-compose exec simulator_app /bin/sh -c "npm i @popperjs/core"
+	docker-compose exec simulator_app /bin/sh -c "npm run development"
 init-migrations:
-	docker-compose exec affiliate_app php artisan migrate
+	docker-compose exec simulator_app php artisan migrate
 seed:
-	docker-compose exec affiliate_app php artisan db:seed
+	docker-compose exec simulator_app php artisan db:seed
 init-app:
-	docker-compose exec affiliate_app php artisan key:generate
-nginx-list-update:
-	docker-compose exec affiliate_app /usr/bin/python3 ./deploy/deploy_nginx.py
-	docker-compose exec affiliate_app nginx -t
-	docker-compose exec affiliate_app nginx -s reload
+	docker-compose exec simulator_app php artisan key:generate

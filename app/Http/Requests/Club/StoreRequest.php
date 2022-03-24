@@ -12,9 +12,19 @@ class StoreRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
         return true;
+    }
+
+    /**
+     * @return void
+     */
+    public function prepareForValidation(): void
+    {
+        $this->merge([
+            'points' => $this->won * 3 + $this->drawn * 1
+        ]);
     }
 
     /**
@@ -22,7 +32,7 @@ class StoreRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             'name'            => ['required', 'string'],
@@ -31,6 +41,7 @@ class StoreRequest extends FormRequest
             'drawn'           => ['required', 'integer', new MatchRule($this->request)],
             'lost'            => ['required', 'integer', new MatchRule($this->request)],
             'goal_difference' => ['required', 'numeric'],
+            'points'          => ['nullable'],
         ];
     }
 }

@@ -40,7 +40,7 @@ class ClubController extends Controller
      */
     public function store(StoreRequest $request, Club $club): RedirectResponse
     {
-        $club->create($request->all());
+        $club->create($request->validated());
 
         return redirect()->route('club.index');
     }
@@ -65,7 +65,7 @@ class ClubController extends Controller
      */
     public function update(UpdateRequest $request, Club $club): RedirectResponse
     {
-        $club->update($request->all());
+        $club->update($request->validated());
 
         return redirect()->route('club.index');
     }

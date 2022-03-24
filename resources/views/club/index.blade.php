@@ -3,7 +3,10 @@
 @section('content')
     <div class="container">
         @include('section.navbar',['active'=>'club.clubs'])
-        <div class="row">
+        <div class="row m-5">
+            <a type="button" class="btn btn-success col-3" href="{{ route('club.create') }}">Create</a>
+        </div>
+        <div class="row m-5">
             <table class="table">
                 <thead>
                 <tr>
@@ -29,7 +32,6 @@
                         <td>{{ $club->drawn }}</td>
                         <td>{{ $club->lost }}</td>
                         <td>{{ $club->goal_difference }}</td>
-                        <td>{{ $club->points }}</td>
                         <td>
                             <div class="row">
                                 <div class="col-sm-6 mb-3">
